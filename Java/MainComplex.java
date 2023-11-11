@@ -19,7 +19,8 @@ public class MainComplex {
         NumComplex sum = num1.add(num2);
         NumComplex difference = num1.subtract(num2);
         NumComplex product = num1.multiply(num2);
-        NumComplex conjugate = num1.conjugate();
+        NumComplex division = num1.division(num2);
+
 
         System.out.println("Resultado da Soma: ");
         sum.printNumComplex();
@@ -30,8 +31,9 @@ public class MainComplex {
         System.out.println("Resultado da Multiplicação: ");
         product.printNumComplex();
 
-        System.out.println("Conjugado do primeiro número complexo: ");
-        conjugate.printNumComplex();
+
+        System.out.println("Resultado da divisão: ");
+        division.printNumComplex();
 
         scanner.close();
 

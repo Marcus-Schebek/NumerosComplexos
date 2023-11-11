@@ -32,9 +32,13 @@ impl NumComplex {
         NumComplex::new(new_real, new_imaginary)
     }
 
-    pub fn conjugate(&self) -> NumComplex {
-        NumComplex::new(self.get_real(), -self.get_imaginary())
+    pub fn division(&self, other: &NumComplex) -> NumComplex{
+        let denominator = other.get_real() * other.get_real() + other.get_imaginary() * other.get_imaginary();
+        let new_real = (self.get_real()*other.get_real() + self.get_imaginary() * other.get_imaginary())/denominator;
+        let new_imaginary = (self.get_real()*other.get_real() - self.get_imaginary() * other.get_imaginary())/denominator;
+        NumComplex::new(new_real, new_imaginary)
     }
+
 
     pub fn print_complex(&self, label: &str) {
         if self.get_imaginary() > 0.0 {
@@ -73,11 +77,11 @@ fn main() {
     let sum = num1.add(&num2);
     let difference = num1.subtract(&num2);
     let product = num1.multiply(&num2);
-    let conjugate = num1.conjugate();
-
+    let division = num1.division(&num2);
+ 
     // Impressão dos resultados
     sum.print_complex("Resultado da Soma");
     difference.print_complex("Resultado da Subtração");
     product.print_complex("Resultado da Multiplicação");
-    conjugate.print_complex("Conjugado do primeiro número complexo");
+    division.print_complex("Resultado da Divisão");
 }

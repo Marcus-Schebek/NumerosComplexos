@@ -27,8 +27,11 @@ public:
         return ComplexNumber(newReal, newImaginary);
     }
 
-    ComplexNumber conjugate() {
-        return ComplexNumber(getReal(), -getImaginary());
+    ComplexNumber division(const ComplexNumber& other) {
+        double denominator = other.getReal() * other.getReal() + other.getImaginary() * other.getImaginary();
+        double newReal = (getReal() * other.getReal() + getImaginary() * other.getImaginary()) / denominator;
+        double newImaginary = (getImaginary() * other.getReal() - getReal() * other.getImaginary()) / denominator;
+        return ComplexNumber{newReal, newImaginary};
     }
 
     void printComplex(const std::string& label) const {
@@ -64,12 +67,12 @@ int main() {
     ComplexNumber sum = num1.add(num2);
     ComplexNumber difference = num1.subtract(num2);
     ComplexNumber product = num1.multiply(num2);
-    ComplexNumber conjugate = num1.conjugate();
+    ComplexNumber divide = num1.division(num2);
 
     sum.printComplex("Resultado da Soma");
     difference.printComplex("Resultado da Subtração");
     product.printComplex("Resultado da Multiplicação");
-    conjugate.printComplex("Conjugado do primeiro número complexo");
+    divide.printComplex("A divisão é");
 
     return 0;
 }
